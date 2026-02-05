@@ -59,6 +59,24 @@
     .category-list a {display:flex;align-items:center;gap:12px;text-decoration:none;color:#333;font-size:16px}
     .category-list a:hover {color:orange}
     .category-list i {width:22px;font-size:18px}
+
+    /* UNAVAILABLE PRODUCTS */
+.card.unavailable {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.card .not-available {
+  color: red;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+button.disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
   </style>
 </head>
 <body>
@@ -109,16 +127,81 @@
     <h1 style="text-align:center;margin-bottom:14px">Other Products</h1>
 
     <section class="grid" id="grid">
-      <div class="card" data-name="Sunglasses" data-price="10.00"><img src="https://picsum.photos/seed/sunglasses/400/300" alt="Sunglasses"><h4>Sunglasses</h4><div class="price">Ghc 10.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Hair Bands" data-price="3.00"><img src="https://picsum.photos/seed/hair-bands/400/300" alt="Hair Bands"><h4>Hair Bands</h4><div class="price">Ghc 3.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Lip Gloss" data-price="4.50"><img src="https://picsum.photos/seed/lip-gloss/400/300" alt="Lip Gloss"><h4>Lip Gloss</h4><div class="price">Ghc 4.50</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Makeup Kit" data-price="12.00"><img src="https://picsum.photos/seed/makeup-kit/400/300" alt="Makeup Kit"><h4>Makeup Kit</h4><div class="price">Ghc 12.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Body Oil" data-price="6.00"><img src="https://picsum.photos/seed/body-oil/400/300" alt="Body Oil"><h4>Body Oil</h4><div class="price">Ghc 6.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Key Holders" data-price="3.50"><img src="https://picsum.photos/seed/key-holders/400/300" alt="Key Holders"><h4>Key Holders</h4><div class="price">Ghc 3.50</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Necklaces" data-price="8.00"><img src="https://picsum.photos/seed/necklaces/400/300" alt="Necklaces"><h4>Necklaces</h4><div class="price">Ghc 8.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Phone Case" data-price="5.00"><img src="https://picsum.photos/seed/phone-case/400/300" alt="Phone Case"><h4>Phone Case</h4><div class="price">Ghc 5.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Hair Brush" data-price="4.00"><img src="https://picsum.photos/seed/hair-brush/400/300" alt="Hair Brush"><h4>Hair Brush</h4><div class="price">Ghc 4.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Beauty Set" data-price="14.00"><img src="https://picsum.photos/seed/beauty-set/400/300" alt="Beauty Set"><h4>Beauty Set</h4><div class="price">Ghc 14.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+    <div class="card" data-name="Sunglasses" data-price="10.00">
+  <img src="https://picsum.photos/seed/sunglasses/400/300" alt="Sunglasses">
+  <h4>Sunglasses</h4>
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card unavailable" data-name="Hair Bands" data-price="3.00" data-status="unavailable">
+  <img src="https://picsum.photos/seed/hair-bands/400/300" alt="Hair Bands">
+  <h4>Hair Bands</h4>
+
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card" data-name="Lip Gloss" data-price="4.50">
+  <img src="https://picsum.photos/seed/lip-gloss/400/300" alt="Lip Gloss">
+  <h4>Lip Gloss</h4>
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card unavailable" data-name="Makeup Kit" data-price="12.00" data-status="unavailable">
+  <img src="https://picsum.photos/seed/makeup-kit/400/300" alt="Makeup Kit">
+  <h4>Makeup Kit</h4>
+
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card" data-name="Body Oil" data-price="6.00">
+  <img src="https://picsum.photos/seed/body-oil/400/300" alt="Body Oil">
+  <h4>Body Oil</h4>
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card unavailable" data-name="Key Holders" data-price="3.50" data-status="unavailable">
+  <img src="https://picsum.photos/seed/key-holders/400/300" alt="Key Holders">
+  <h4>Key Holders</h4>
+  
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card" data-name="Necklaces" data-price="8.00">
+  <img src="https://picsum.photos/seed/necklaces/400/300" alt="Necklaces">
+  <h4>Necklaces</h4>
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card unavailable" data-name="Phone Case" data-price="5.00" data-status="unavailable">
+  <img src="https://picsum.photos/seed/phone-case/400/300" alt="Phone Case">
+  <h4>Phone Case</h4>
+  
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card" data-name="Hair Brush" data-price="4.00">
+  <img src="https://picsum.photos/seed/hair-brush/400/300" alt="Hair Brush">
+  <h4>Hair Brush</h4>
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
+<div class="card unavailable" data-name="Beauty Set" data-price="14.00" data-status="unavailable">
+  <img src="https://picsum.photos/seed/beauty-set/400/300" alt="Beauty Set">
+  <h4>Beauty Set</h4>
+  
+  <div class="not-available">Not Available</div>
+  <button class="add disabled">Unavailable</button>
+</div>
+
     </section>
   </main>
 
@@ -152,18 +235,27 @@
   function getCart(){ return JSON.parse(localStorage.getItem('bs_cart')||'[]') }
   function saveCart(c){ localStorage.setItem('bs_cart', JSON.stringify(c)); updateCount() }
 
-  function addToCart(btn){
-    const card=btn.closest('.card');
-    const name=card.dataset.name;
-    const price=parseFloat(card.dataset.price);
-    const img=card.querySelector('img').src;
-    let cart=getCart();
-    const existing=cart.find(i=>i.name===name);
-    if(existing) existing.qty+=1;
-    else cart.push({name,price,qty:1,img});
-    saveCart(cart);
-    animateFly(btn);
+function addToCart(btn){
+  const card = btn.closest('.card');
+
+  // Check availability
+  if(card.dataset.status === "unavailable"){
+    alert("Sorry, this item is not available yet.");
+    return;
   }
+
+  const name = card.dataset.name;
+  const price = parseFloat(card.dataset.price);
+  const img = card.querySelector('img').src;
+
+  let cart = getCart();
+  const existing = cart.find(i => i.name === name);
+  if(existing) existing.qty += 1;
+  else cart.push({name, price, qty: 1, img});
+  saveCart(cart);
+  animateFly(btn);
+}
+
 
   function updateCount(){
     const count=getCart().reduce((s,i)=>s+i.qty,0);
