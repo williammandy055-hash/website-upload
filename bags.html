@@ -155,6 +155,50 @@
     @media (max-width:768px){.category-box{display:none}}
     @media (max-width:600px){nav a{display:none}h1{font-size:20px}.items{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));padding:0 8px}.card{padding:8px}.card button{padding:10px 12px;min-height:40px}.cart-btn{padding:12px 16px;min-width:48px;min-height:48px}.modal{width:95vw;max-width:100%}.image-modal{max-width:95vw;max-height:90vh}.footer{font-size:12px;padding:12px 8px}}
     @media (max-width:480px){.image-modal{padding:8px;max-height:85vh}.image-modal img{max-height:70vh}}
+    /* =========================
+   MOBILE CATEGORY SIDEBAR FIX
+========================= */
+
+/* Tablet & Mobile */
+@media (max-width:768px) {
+  .category-box {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 12px;
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px 4px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .category-box a {
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    background: #f5f5f5;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+}
+
+/* Mobile extra improvements */
+@media (max-width:600px) {
+  .category-box a {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
   </style>
 </head>
 <body>

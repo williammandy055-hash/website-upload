@@ -103,6 +103,51 @@
     .category-list a {display:flex;align-items:center;gap:12px;text-decoration:none;color:#333;font-size:16px}
     .category-list a:hover {color:orange}
     .category-list i {width:22px;font-size:18px}
+
+    /* =========================
+   MOBILE CATEGORY SIDEBAR FIX
+========================= */
+
+/* Tablet & Mobile */
+@media (max-width:768px) {
+  .category-box {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 12px;
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px 4px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .category-box a {
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    background: #f5f5f5;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+}
+
+/* Mobile extra improvements */
+@media (max-width:600px) {
+  .category-box a {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
   </style>
 </head>
 <body>
