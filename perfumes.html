@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Perfumes - Beauty and Slay Aesthetics</title>
+  <title>Perfumes - Scents and Slay Aesthetics</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     :root{--accent:#ff6600;--muted:#666;--bg:#f5f5f5}
     *{box-sizing:border-box} 
@@ -30,21 +32,41 @@
     .price{color:var(--accent);font-weight:700;margin-top:6px}
     button.add{margin-top:10px;padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
     @keyframes fadeIn{to{opacity:1;transform:none}}
+    .image-modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:90;animation:fadeIn 0.3s ease}
+    .image-modal{background:#fff;border-radius:10px;padding:20px;max-width:85vh;max-height:85vh;position:relative;overflow:hidden}
+    .image-modal img{max-width:100%;max-height:75vh;object-fit:contain;display:block}
+    .image-modal .close-btn{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .image-modal .close-btn:hover{background:#cc5200}
+    .card img{cursor:pointer}
     .cart-btn{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;border-radius:999px;padding:12px 16px;box-shadow:0 8px 26px rgba(16,24,40,0.18);cursor:pointer;z-index:60;display:flex;gap:8px;align-items:center}
     .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:80}
     .modal{background:#fff;width:360px;max-width:95%;border-radius:10px;padding:14px}
     .cart-item{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+    .cart-item img{width:80px;height:80px;object-fit:cover;border-radius:6px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
     footer{background:#222;color:#ddd;text-align:center;padding:18px;margin-top:28px}
-    @media (max-width:600px){nav a{display:none} .searchbar input{width:140px}}
+    @media (max-width:768px){.category-box{display:none}.container{max-width:100%;padding:0 12px}}
+    @media (max-width:600px){nav a{display:none}.searchbar{flex-direction:column;width:100%}.searchbar input{width:100%;padding:10px 12px}.searchbar button{padding:10px 14px;min-height:44px}button.add{padding:12px 14px;min-height:44px}.cart-btn{padding:14px 18px;min-width:50px;min-height:50px}h1{font-size:20px}.modal{width:95vw}.footer{font-size:12px;padding:14px 8px}}
+    /* ===== CATEGORY BOX ===== */
+    .category-box {width:300px;background:#fff;padding:15px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);position:fixed;left:20px;top:100px;max-height:70vh;overflow-y:auto;z-index:50}
+    .category-header {display:flex;justify-content:space-between;align-items:center;font-size:14px;cursor:pointer}
+    .menu-icon {font-size:20px;color:orange}
+    .category-dropdown {margin-top:10px;border-top:1px solid #eee;display:none}
+    .category-dropdown.active {display:block}
+    .category-list {list-style:none;padding:0;margin:0}
+    .category-list li {padding:10px 0;border-bottom:1px solid #eee}
+    .category-list li:last-child {border-bottom:none}
+    .category-list a {display:flex;align-items:center;gap:12px;text-decoration:none;color:#333;font-size:16px}
+    .category-list a:hover {color:orange}
+    .category-list i {width:22px;font-size:18px}
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <img src="logo.png" alt="Beauty & Slay Aesthetics logo">
+      <img src="logo.png" alt="Scents & Slay Aesthetics logo">
       <div>
-        <div style="font-weight:800">Beauty & Slay Aesthetics</div>
+        <div style="font-weight:800">Scents & Slay Aesthetics</div>
         <div style="font-size:12px;color:var(--muted)">Shop Online</div>
       </div>
     </div>
@@ -58,42 +80,82 @@
 
       <nav>
         <a href="homepage.html">Home</a>
-        <div class="dropdown">
-          <a style="cursor:pointer">Products ▾</a>
-          <div class="dropdown-content">
-            <a href="bracelets.html">Bracelets</a>
-            <a href="watches.html">Watches</a>
-            <a href="perfumes.html">Perfumes</a>
-            <a href="press-on nails.html">Press-on Nails</a>
-            <a href="bags.html">Bags</a>
-            <a href="Others.html">Others</a>
-          </div>
-        </div>
         <a href="#">About</a>
         <a href="#">Contact</a>
       </nav>
     </div>
   </header>
 
+  <!-- CATEGORY BOX -->
+  <div class="category-box">
+    <div class="category-header" onclick="toggleDropdown()">
+      <strong>OUR CATEGORIES</strong>
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </div>
+    <div class="category-dropdown" id="categoryDropdown">
+      <ul class="category-list">
+        <li><a href="bags.html"><i class="fa-solid fa-bag-shopping"></i> Bags</a></li>
+        <li><a href="perfumes.html"><i class="fa-solid fa-spray-can-sparkles"></i> Perfumes</a></li>
+        <li><a href="bodysplash.html"><i class="fa-solid fa-bottle-droplet"></i> Body Splash</a></li>
+        <li><a href="watches.html"><i class="fa-solid fa-clock"></i> Watches</a></li>
+        <li><a href="bracelets.html"><i class="fa-solid fa-gem"></i> Bracelets</a></li>
+        <li><a href="press-on nails.html"><i class="fa-solid fa-hand-sparkles"></i> Press-on Nails</a></li>
+        <li><a href="Others.html"><i class="fa-solid fa-ellipsis"></i> Others</a></li>
+      </ul>
+    </div>
+  </div>
+
   <main class="container">
-    <h1 style="text-align:center;margin-bottom:14px">Perfumes & Body Splashes</h1>
+    <h1 style="text-align:center;margin-bottom:14px">Perfumes</h1>
 
     <section class="grid" id="grid">
-      <!-- 10 Product Cards -->
-      <div class="card" data-name="Men's Classic" data-price="40.00"><img src="p1.PNG" alt="Men's Classic perfume"><h4>Men's Classic</h4><div class="price">Ghc 40.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Ladies Gold" data-price="35.00"><img src="s1.PNG" alt="Ladies Gold perfume"><h4>Ladies Gold</h4><div class="price">Ghc 35.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Luxury Royal" data-price="85.00"><img src="p2.PNG" alt="Luxury Royal perfume"><h4>Luxury Royal</h4><div class="price">Ghc 85.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Rose Gold" data-price="38.00"><img src="s2.PNG" alt="Rose Gold perfume"><h4>Rose Gold</h4><div class="price">Ghc 38.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Metallic Silver" data-price="50.00"><img src="p3.PNG" alt="Metallic Silver perfume"><h4>Metallic Silver</h4><div class="price">Ghc 50.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Yara" data-price="15.00"><img src="s3.PNG" alt="Yara perfume"><h4>Yara</h4><div class="price">Ghc 15.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Body Splash" data-price="12.50"><img src="s4.PNG" alt="Body Splash perfume"><h4>Body Splash</h4><div class="price">Ghc 12.50</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Diamond Perfume" data-price="70.00"><img src="p4.PNG" alt="Diamond Perfume"><h4>Diamond Perfume</h4><div class="price">Ghc 70.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Floral Essence" data-price="45.00"><img src="p5.PNG" alt="Floral Essence perfume"><h4>Floral Essence</h4><div class="price">Ghc 45.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Luxury Night" data-price="110.00"><img src="p6.PNG" alt="Luxury Night perfume"><h4>Luxury Night</h4><div class="price">Ghc 110.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <!-- 37 Product Cards -->
+      <div class="card" data-name="Men's Classic" data-price="40.00"><img src="p1.jpeg" alt="AMEERAT AL ARAB"><h4>AMEERAT AL ARABc</h4><div class="price">Ghc 350.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Ladies Gold" data-price="35.00"><img src="p10.jpeg" alt="SUAVE INTENSE"><h4>SUAVE INTENSE</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Luxury Royal" data-price="85.00"><img src="p2.jpeg" alt="ASAD BOURBON"><h4>ASAD BOURBON</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Rose Gold" data-price="38.00"><img src="p3.jpeg" alt="ASAD ZANZIBAR"><h4>ASAD ZANZIBAR</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Metallic Silver" data-price="50.00"><img src="p4.jpeg" alt="Berries Weekend"><h4>Berries weekend</h4><div class="price">Ghc 200.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Yara" data-price="15.00"><img src="p12.jpeg" alt="HAYAATI"><h4>HAYAATI</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Body Splash" data-price="12.50"><img src="p13.jpeg" alt="OUD DE ARABIA"><h4>OUD DE ARABIA</h4><div class="price">Ghc 270.50</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Diamond Perfume" data-price="70.00"><img src="p5.jpeg" alt="ARMAF"><h4>ARMAF</h4><div class="price">Ghc 650.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+        
+      <div class="card" data-name="Luxury Night" data-price="280.00"><img src="p11.jpeg" alt="Maison Eau De Parfum Vaporisateur"><h4>Maison Eau De Parfum Vaporisateur</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Ocean Breeze" data-price="42.00"><img src="p7.jpeg" alt="Sugar Candy"><h4>Sugar CAndy</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Vanilla Dreams" data-price="180.00"><img src="p8.jpeg" alt="ASAD"><h4>ASAD</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Cherry Blossom" data-price="600.00"><img src="p9.jpeg" alt="LIQUID BRUN"><h4>LIQUID BRUN</h4><div class="price">Ghc 600.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Musk Elegance" data-price="260.00"><img src="p14.jpeg" alt="EXTREMELY UNIQUE"><h4>EXTREMELY UNIQUE</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Jasmine Bliss" data-price="300.00"><img src="p15.jpeg" alt="ZARA MAN"><h4>ZARA MAN</h4><div class="price">Ghc 300.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Lavender Mist" data-price="280.00"><img src="p16.jpeg" alt="Maison Francis Kurkdijan Paris"><h4>Maison Francis Kurkdijan Paris</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Citrus Splash" data-price="250.00"><img src="p17.jpeg" alt="MATELOT"><h4>MATELOT</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Rose Perfume" data-price="280.00"><img src="p18.jpeg" alt="Maison Francis Kurkdijan Paris"><h4>Maison Francis Kurkdijan Paris</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Honey Nectar" data-price="250.00"><img src="p19.jpeg" alt="Good Girl"><h4>Good Girl</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Spice Blend" data-price="300.00"><img src="p20.jpeg" alt="Eclaire"><h4>Eclaire</h4><div class="price">Ghc 300.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Forest Pine" data-price="360.00"><img src="p21.jpeg" alt="SAHEB"><h4>SAHEB</h4><div class="price">Ghc 360.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Amber Gold" data-price="260.00"><img src="p22.jpeg" alt="AVENTOS"><h4>AVENTOS</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Pearl White" data-price="200.00"><img src="p23.jpeg" alt="MY WAY"><h4>MY WAY</h4><div class="price">Ghc 200.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Midnight Black" data-price="180.00"><img src="p24.jpeg" alt="BROWN ORCHD"><h4>BROWN ORCHID</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Sunshine Gold" data-price="320.00"><img src="p25.jpeg" alt="BAD LAD"><h4>BAD LAD</h4><div class="price">Ghc 320.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Mystic Blue" data-price="600.00"><img src="p26.jpeg" alt="VERSACE EROS"><h4>VERSACE EROS</h4><div class="price">Ghc 600.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Emerald Dream" data-price="180.00"><img src="p27.jpeg" alt="YARA"><h4>YARA</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Ruby Passion" data-price="180.00"><img src="p28.jpeg" alt="ASAD"><h4>ASAD</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Sapphire Blue" data-price="260.00"><img src="p29.jpeg" alt="NOW WOMEN"><h4>NOW WOMEN</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Crystal Clear" data-price="160.00"><img src="p30.jpeg" alt="NOW"><h4>NOW</h4><div class="price">Ghc 160.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Silk Touch" data-price="360.00"><img src="p31.jpeg" alt="KHAMRAH"><h4>kHAMRAH</h4><div class="price">Ghc 360.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Velvet Smooth" data-price="550.00"><img src="p32.jpeg" alt="Vintage Radio"><h4>Vintage Radio</h4><div class="price">Ghc 550.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Satin Luxe" data-price="630.00"><img src="p33.jpeg" alt="9 PM"><h4>9 PM</h4><div class="price">Ghc 630.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Golden Hour" data-price="670.00"><img src="p34.jpeg" alt="Vintage Radio"><h4>Vintage Radio</h4><div class="price">Ghc 670.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Silver Shimmer" data-price="280.00"><img src="p35.jpeg" alt="HAYAATI"><h4>HAYAATI</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
     </section>
   </main>
 
   <div class="cart-btn" id="cartBtn" onclick="openCart()">🛒 <span id="cartCount">0</span></div>
+
+  <div class="image-modal-back" id="imageModal">
+    <div class="image-modal">
+      <button class="close-btn" id="closeImageBtn" aria-label="Close image preview">✕</button>
+      <img id="previewImage" src="" alt="Product image preview">
+    </div>
+  </div>
 
   <div class="modal-back" id="cartModal">
     <div class="modal">
@@ -110,7 +172,7 @@
     </div>
   </div>
 
-  <footer><div class="container" style="max-width:1100px;margin:0 auto"><p style="margin:8px 0 0">© 2025 Beauty & Slay Aesthetics — All rights reserved</p></div></footer>
+  <footer><div class="container" style="max-width:1100px;margin:0 auto"><p style="margin:8px 0 0">© 2026 Scents & Slay Aesthetics — All rights reserved</p></div></footer>
 
 <script>
   function getCart(){ return JSON.parse(localStorage.getItem('bs_cart')||'[]') }
@@ -154,8 +216,11 @@
       div.className='cart-item';
       const img=document.createElement('img');
       img.src=it.img;
-      img.width=50;
-      img.height=50;
+      img.style.cursor='pointer';
+      img.addEventListener('click', function() {
+        document.getElementById('previewImage').src = this.src;
+        document.getElementById('imageModal').style.display = 'flex';
+      });
       img.alt=it.name;
       const info=document.createElement('div');
       info.style.flex=1;
@@ -235,12 +300,62 @@
 
   window.addEventListener('load', updateCount);
 
+  // TOGGLE DROPDOWN
+  function toggleDropdown() {
+    document.getElementById("categoryDropdown").classList.toggle("active");
+  }
+
   document.getElementById('closeCart').addEventListener('click', ()=>{
     document.getElementById('cartModal').style.display='none';
   });
 
   window.addEventListener('keydown', (e)=>{
     if(e.key==='Escape') document.getElementById('cartModal').style.display='none';
+  });
+
+  // Image preview modal
+  const imageModal = document.getElementById('imageModal');
+  const previewImage = document.getElementById('previewImage');
+  const closeImageBtn = document.getElementById('closeImageBtn');
+
+  document.querySelectorAll('.card img').forEach(img => {
+    img.addEventListener('click', function() {
+      previewImage.src = this.src;
+      previewImage.alt = this.alt;
+      imageModal.style.display = 'flex';
+    });
+  });
+
+  closeImageBtn.addEventListener('click', () => {
+    imageModal.style.display = 'none';
+  });
+
+  imageModal.addEventListener('click', (e) => {
+    if(e.target.id === 'imageModal') imageModal.style.display = 'none';
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && imageModal.style.display === 'flex') imageModal.style.display = 'none';
+  });
+
+  // Mobile-friendly dropdown toggle
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+    const trigger = dropdown.querySelector('a');
+    if(trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const content = dropdown.querySelector('.dropdown-content');
+        const isOpen = content.style.display === 'block';
+        document.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
+        content.style.display = isOpen ? 'none' : 'block';
+      });
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
+    }
   });
 </script>
 </body>

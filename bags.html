@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bags - Beauty & Slay Aesthetics</title>
+  <title>Bags - Scents & Slay Aesthetics</title>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     :root{--accent:#ff6600;--muted:#666;--bg:#f5f5f5}
     *{box-sizing:border-box} 
@@ -19,6 +21,78 @@
     .dropdown-content a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-size: 14px; }
     .dropdown-content a:hover { background: var(--accent); color: #fff; }
     .dropdown:hover .dropdown-content { display: block; }
+
+    /* ===== CATEGORY BOX ===== */
+    .category-box {
+      width: 300px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: fixed;
+      left: 20px;
+      top: 100px;
+      max-height: 70vh;
+      overflow-y: auto;
+      z-index: 50;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: left;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      font-size: 20px;
+      color: orange;
+    }
+
+    /* ===== CATEGORY DROPDOWN ===== */
+    .category-dropdown {
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      display: none;
+    }
+
+    .category-dropdown.active {
+      display: block;
+    }
+
+    .category-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .category-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .category-list li:last-child {
+      border-bottom: none;
+    }
+
+    .category-list a {
+      display: flex;
+      align-items: left;
+      gap: 12px;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .category-list a:hover {
+      color: orange;
+    }
+
+    .category-list i {
+      width: 22px;
+      font-size: 18px;
+    }
 
     /* Search Bar */
     .searchbar { display:flex; gap:8px; align-items:center; }
@@ -36,6 +110,8 @@
     .card img { width:100%; height:150px; object-fit:cover; border-radius:8px; display:block; }
     .card h3 { margin:12px 0 6px; font-size:16px; color:#111; text-align:left }
     .card p { font-size:15px; color:var(--accent); font-weight:700; margin:0 0 10px; }
+    .cart-item{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+    .cart-item img{width:80px;height:80px;object-fit:cover;border-radius:6px}
     .card .meta { margin-top:8px; display:flex;align-items:center;justify-content:space-between;gap:8px }
     .card button { padding:10px 14px; border:none; border-radius:6px; background:var(--accent); color:#fff; font-weight:600; cursor:pointer; transition: background 0.18s; min-width:120px }
     .card button:hover { background:#cc5200; }
@@ -57,14 +133,26 @@
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
 
     footer { text-align:center; padding:18px; color:#fff; font-size:14px; margin-top:40px; background:#000; }
+
+    /* Image Preview Modal */
+    .image-modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:90;animation:fadeIn 0.3s ease}
+    .image-modal{background:#fff;border-radius:10px;padding:20px;max-width:85vh;max-height:85vh;position:relative;overflow:hidden}
+    .image-modal img{max-width:100%;max-height:75vh;object-fit:contain;display:block}
+    .image-modal .close-btn{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .image-modal .close-btn:hover{background:#cc5200}
+    .card img{cursor:pointer}
+
+    @media (max-width:768px){.category-box{display:none}}
+    @media (max-width:600px){nav a{display:none}h1{font-size:20px}.items{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));padding:0 8px}.card{padding:8px}.card button{padding:10px 12px;min-height:40px}.cart-btn{padding:12px 16px;min-width:48px;min-height:48px}.modal{width:95vw;max-width:100%}.image-modal{max-width:95vw;max-height:90vh}.footer{font-size:12px;padding:12px 8px}}
+    @media (max-width:480px){.image-modal{padding:8px;max-height:85vh}.image-modal img{max-height:70vh}}
   </style>
 </head>
 <body>
 <header>
     <div class="brand">
-      <img src="logo.png" alt="Beauty & Slay Aesthetics logo">
+      <img src="logo.png" alt="Scents & Slay Aesthetics logo">
       <div>
-        <div style="font-weight:800">Beauty & Slay Aesthetics</div>
+        <div style="font-weight:800">Scents & Slay Aesthetics</div>
         <div style="font-size:12px;color:var(--muted)">Shop Online</div>
       </div>
     </div>
@@ -78,41 +166,63 @@
 
       <nav>
         <a href="homepage.html">Home</a>
-        <div class="dropdown">
-          <a style="cursor:pointer">Products ▾</a>
-          <div class="dropdown-content">
-            <a href="bracelets.html">Bracelets</a>
-            <a href="watches.html">Watches</a>
-            <a href="perfumes.html">Perfumes</a>
-            <a href="press-on nails.html">Press-on Nails</a>
-            <a href="bags.html">Bags</a>
-            <a href="Others.html">Others</a>
-          </div>
-        </div>
         <a href="#">About</a>
         <a href="#">Contact</a>
       </nav>
     </div>
   </header>
 
+<!-- CATEGORY BOX -->
+  <div class="category-box">
+    <div class="category-header" onclick="toggleDropdown()">
+      <strong>OUR CATEGORIES</strong>
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </div>
+
+    <div class="category-dropdown" id="categoryDropdown">
+      <ul class="category-list">
+        <li><a href="bags.html"><i class="fa-solid fa-bag-shopping"></i> Bags</a></li>
+        <li><a href="perfumes.html"><i class="fa-solid fa-spray-can-sparkles"></i> Perfumes</a></li>
+        <li><a href="bodysplash.html"><i class="fa-solid fa-bottle-droplet"></i> Body Splash</a></li>
+        <li><a href="watches.html"><i class="fa-solid fa-clock"></i> Watches</a></li>
+        <li><a href="bracelets.html"><i class="fa-solid fa-gem"></i> Bracelets</a></li>
+        <li><a href="press-on nails.html"><i class="fa-solid fa-hand-sparkles"></i> Press-on Nails</a></li>
+        <li><a href="Others.html"><i class="fa-solid fa-ellipsis"></i> Others</a></li>
+      </ul>
+    </div>
+  </div>
+
 <h1>Bags Collection</h1>
 
 <div class="items" id="grid">
 
-  <div class="card" data-name="Mini Purse" data-price="20.00"><img src="https://picsum.photos/seed/mini-purse/400/300" alt="Mini Purse"><h3>Mini Purse</h3><p>Ghc 20.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Handbag" data-price="25.00"><img src="https://picsum.photos/seed/handbag/400/300" alt="Handbag"><h3>Handbag</h3><p>Ghc 25.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Shoulder Bag" data-price="30.00"><img src="https://picsum.photos/seed/shoulder-bag/400/300" alt="Shoulder Bag"><h3>Shoulder Bag</h3><p>Ghc 30.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Luxury Tote" data-price="45.00"><img src="https://picsum.photos/seed/luxury-tote/400/300" alt="Luxury Tote"><h3>Luxury Tote</h3><p>Ghc 45.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Cross Bag" data-price="18.00"><img src="https://picsum.photos/seed/cross-bag/400/300" alt="Cross Bag"><h3>Cross Bag</h3><p>Ghc 18.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Clutch" data-price="22.00"><img src="https://picsum.photos/seed/clutch/400/300" alt="Clutch"><h3>Clutch</h3><p>Ghc 22.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Travel Set" data-price="50.00"><img src="https://picsum.photos/seed/travel-set/400/300" alt="Travel Set"><h3>Travel Set</h3><p>Ghc 50.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Office Bag" data-price="35.00"><img src="https://picsum.photos/seed/office-bag/400/300" alt="Office Bag"><h3>Office Bag</h3><p>Ghc 35.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Casual Bag" data-price="15.00"><img src="https://picsum.photos/seed/casual-bag/400/300" alt="Casual Bag"><h3>Casual Bag</h3><p>Ghc 15.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Designer Bag" data-price="55.00"><img src="https://picsum.photos/seed/designer-bag/400/300" alt="Designer Bag"><h3>Designer Bag</h3><p>Ghc 55.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Quilted Bag" data-price="180.00"><img src="b1.jpeg" alt="Quilted Bag"><h3>Quilted Bag</h3><p>Ghc 180.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Handbag" data-price="130.00"><img src="b2.jpeg" alt="Handbag"><h3>Handbag</h3><p>Ghc 130.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Shoulder Bag" data-price="190.00"><img src="b4.jpeg" alt="Shoulder Bag"><h3>Shoulder Bag</h3><p>Ghc 190.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Luxury Bag" data-price="220.00"><img src="b5.jpeg" alt="Luxury Bag"><h3>Luxury Bag</h3><p>Ghc 220.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Mini Purse" data-price="75.00"><img src="b14.jpeg" alt="Mini Purse"><h3>Mini Purse</h3><p>Ghc 75.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Ash Shoulder Bag" data-price="160.00"><img src="b16.jpeg" alt="Ash Shoulder Bag"><h3>Ash Shoulder Bag</h3><p>Ghc 160.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Hobo Bag" data-price="180.00"><img src="b8.jpeg" alt="Hobo Bag"><h3>Hobo Bag</h3><p>Ghc 180.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Office Bag" data-price="130.00"><img src="b.jpeg" alt="Office Bag"><h3>Office Bag</h3><p>Ghc 130.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Casual Bag" data-price="80.00"><img src="b12.jpeg" alt="Casual Bag"><h3>Casual Bag</h3><p>Ghc 80.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Designer Bag" data-price="220.00"><img src="b7.jpeg" alt="Designer Bag"><h3>Designer Bag</h3><p>Ghc 220.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Casual Bag" data-price="185.00"><img src="b6.jpeg" alt="Backpack"><h3>Casual Bag</h3><p>Ghc 185.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Beaded Bag" data-price="190.00"><img src="b3.jpeg" alt="Beaded Bag"><h3>Beaded Bag</h3><p>Ghc 190.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Bucket Bag" data-price="90.00"><img src="b13.jpeg" alt="Bucket Bag"><h3>Bucket Bag</h3><p>Ghc 90.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Belt Bag" data-price="100.00"><img src="b11.jpeg" alt="Belt Bag"><h3>Belt Bag</h3><p>Ghc 100.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Bowling Bag" data-price="155.00"><img src="b15.jpeg" alt=""><h3>Bowling Bag</h3><p>Ghc 155.00</p><button onclick="">Add to Cart</button></div>
+  <div class="card" data-name="Box Bag" data-price="80.00"><img src="b10.jpeg" alt="Box Bag"><h3>Box Bag</h3><p>Ghc 80.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
 
-</div>
+</div>..
 
 <div class="cart-btn" id="cartBtn" onclick="openCart()">🛒 <span id="cartCount">0</span></div>
+
+<div class="image-modal-back" id="imageModal">
+  <div class="image-modal">
+    <button class="close-btn" id="closeImageBtn" aria-label="Close image preview">✕</button>
+    <img id="previewImage" src="" alt="Product image preview">
+  </div>
+</div>
 
 <div class="modal-back" id="cartModal">
   <div class="modal">
@@ -129,7 +239,7 @@
   </div>
 </div>
 
-<footer>© 2025 Beauty & Slay Aesthetics — All rights reserved</footer>
+<footer>© 2026 Scents & Slay Aesthetics — All rights reserved</footer>
 
 <script>
   function getCart(){ return JSON.parse(localStorage.getItem('bs_cart')||'[]') }
@@ -174,6 +284,11 @@
       const img=document.createElement('img');
       img.src=it.img;
       img.alt=it.name;
+      img.style.cursor='pointer';
+      img.addEventListener('click', function() {
+        document.getElementById('previewImage').src = this.src;
+        document.getElementById('imageModal').style.display = 'flex';
+      });
       const info=document.createElement('div');
       info.innerHTML=`<strong>${it.name}</strong><br>Ghc${it.price.toFixed(2)}`;
       const btnMinus=document.createElement('button');
@@ -257,6 +372,36 @@
 
   window.addEventListener('keydown', (e)=>{
     if(e.key==='Escape') document.getElementById('cartModal').style.display='none';
+  });
+
+  // TOGGLE DROPDOWN
+  function toggleDropdown() {
+    document.getElementById("categoryDropdown").classList.toggle("active");
+  }
+
+  // Image preview modal
+  const imageModal = document.getElementById('imageModal');
+  const previewImage = document.getElementById('previewImage');
+  const closeImageBtn = document.getElementById('closeImageBtn');
+
+  document.querySelectorAll('.card img').forEach(img => {
+    img.addEventListener('click', function() {
+      previewImage.src = this.src;
+      previewImage.alt = this.alt;
+      imageModal.style.display = 'flex';
+    });
+  });
+
+  closeImageBtn.addEventListener('click', () => {
+    imageModal.style.display = 'none';
+  });
+
+  imageModal.addEventListener('click', (e) => {
+    if(e.target.id === 'imageModal') imageModal.style.display = 'none';
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && imageModal.style.display === 'flex') imageModal.style.display = 'none';
   });
 </script>
 </body>

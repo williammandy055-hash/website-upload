@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beauty & Slay Aesthetics Shop Online</title>
+  <title>Scents & Slay Aesthetics Shop Online</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
     body {
@@ -159,6 +162,7 @@
       margin-bottom: 10px;
       align-items: center;
     }
+    .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; }
 
     .sr-only {
       position: absolute;
@@ -172,6 +176,59 @@
       border-width: 0;
     }
 
+    /* Image Preview Modal */
+    .image-modal-back {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 950;
+    }
+
+    .image-modal {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 85vh;
+      max-height: 85vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-modal img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .image-modal .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-modal .close-btn:hover {
+      background: #cc5200;
+    }
+
+    .card img {
+      cursor: pointer;
+    }
+
     footer {
       background: #333;
       color: white;
@@ -180,9 +237,99 @@
       margin-top: 30px;
     }
 
+    @media (max-width: 768px) {
+      .category-box { display: none; }
+      #searchInput { max-width: 100%; width: 90%; }
+    }
+    @media (max-width: 600px) {
+      header { padding: 12px 14px; flex-wrap: wrap; }
+      header h2 { font-size: 16px; }
+      nav { display: none; }
+      nav a { font-size: 12px; }
+      #searchInput { padding: 10px 12px; width: 100%; }
+      button { padding: 10px 12px; min-height: 44px; font-size: 14px; }
+      .cart-btn { padding: 12px 16px; min-width: 48px; min-height: 48px; font-size: 14px; }
+      .items { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); padding: 0 8px 20px; gap: 12px; }
+      .card { padding: 10px; }
+      .modal { width: 95vw; max-width: 100%; padding: 12px; }
+      .image-modal { max-width: 95vw; max-height: 90vh; padding: 12px; }
+      footer { font-size: 12px; padding: 12px 8px; }
+    }
     @media (max-width: 480px) {
-      header h2 { font-size: 18px; }
-      nav a { font-size: 14px; }
+      .image-modal { padding: 8px; max-height: 85vh; }
+      .image-modal img { max-height: 70vh; }
+    }
+
+    /* ===== CATEGORY BOX ===== */
+    .category-box {
+      width: 300px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: fixed;
+      left: 20px;
+      top: 100px;
+      max-height: 70vh;
+      overflow-y: auto;
+      z-index: 50;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: left;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      font-size: 20px;
+      color: orange;
+    }
+
+    /* ===== DROPDOWN ===== */
+    .category-dropdown {
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      display: none;
+    }
+
+    .category-dropdown.active {
+      display: block;
+    }
+
+    .category-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .category-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .category-list li:last-child {
+      border-bottom: none;
+    }
+
+    .category-list a {
+      display: flex;
+      align-items: left;
+      gap: 12px;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .category-list a:hover {
+      color: orange;
+    }
+
+    .category-list i {
+      width: 22px;
+      font-size: 18px;
     }
   </style>
 </head>
@@ -191,105 +338,112 @@
 
   <header>
     <div style="display:flex; align-items:center; gap:10px;">
-      <img src="logo.png" alt="Beauty & Slay Aesthetics logo">
-      <h2 style="margin:0;">Beauty & Slay Aesthetics</h2>
+      <img src="logo.png" alt="Scents & Slay Aesthetics logo">
+      <h2 style="margin:0;">Scents & Slay Aesthetics</h2>
     </div>
 
     <nav>
       <a href="homepage.html">Home</a>
-
-      <div class="dropdown">
-        <a>Products ▾</a>
-        <div class="dropdown-content">
-          <a href="bracelets.html">Bracelets</a>
-          <a href="watches.html">Watches</a>
-          <a href="perfumes.html">Perfumes</a>
-          <a href="press-on nails.html">Press-on Nails</a>
-          <a href="bags.html">Bags</a>
-          <a href="Others.html">Others</a>
-        </div>
-      </div>
-
-      <a>About</a>
       <a>Contact</a>
+      <a>About</a>
     </nav>
   </header>
 
-  <h1 style="text-align:center;">Welcome to Beauty and Slay Aesthetics</h1>
+  <!-- CATEGORY BOX -->
+  <div class="category-box">
+    <div class="category-header" onclick="toggleDropdown()">
+      <strong>OUR CATEGORIES</strong>
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </div>
+
+    <div class="category-dropdown" id="categoryDropdown">
+      <ul class="category-list">
+        <li><a href="bags.html"><i class="fa-solid fa-bag-shopping"></i> Bags</a></li>
+        <li><a href="perfumes.html"><i class="fa-solid fa-spray-can-sparkles"></i> Perfumes</a></li>
+        <li><a href="bodysplash.html"><i class="fa-solid fa-bottle-droplet"></i> Body Splash</a></li>
+        <li><a href="watches.html"><i class="fa-solid fa-clock"></i> Watches</a></li>
+        <li><a href="bracelets.html"><i class="fa-solid fa-gem"></i> Bracelets</a></li>
+        <li><a href="press-on nails.html"><i class="fa-solid fa-hand-sparkles"></i> Press-on Nails</a></li>
+        <li><a href="Others.html"><i class="fa-solid fa-ellipsis"></i> Others</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <h1 style="text-align:center;">Welcome to Scents and Slay Aesthetics</h1>
 
   <!-- SEARCH BAR -->
   <label for="searchInput" class="sr-only">Search products</label>
-  <input type="text" id="searchInput" placeholder="Search products...">
+  <input type="text" id="searchInput" placeholder="Search products..." oninput="filterCards()">
 
   <!-- PRODUCT GRID -->
   <div class="items" id="productGrid">
-    <div class="card" data-name="Perfumes" data-price="10" data-img="p1.PNG">
-      <img src="p1.PNG" alt="Perfumes">
-      <h3>Perfumes</h3>
-      <p>Ghc 10.00</p>
+    <div class="card" data-name="Maison Francis Kurkdijan Paris" data-price="280" data-img="p18.jpeg">
+      <img src="p18.jpeg" alt="Perfumes">
+      <h3>Maison Francis Kurkdijan Paris</h3>
+      <p>Ghc 280.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Body Splash" data-price="12.5" data-img="s1.PNG">
-      <img src="s1.PNG" alt="Body Splash">
-      <h3>Body Splash</h3>
-      <p>Ghc 12.50</p>
+    <div class="card" data-name="Shoulder Bag" data-price="190" data-img="b4.jpeg">
+      <img src="b4.jpeg" alt="Shoulder Bag">
+      <h3>Shoulder Bag</h3>
+      <p>Ghc 190.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Watches" data-price="150" data-img="w1.PNG">
-      <img src="w1.PNG" alt="Watches">
-      <h3>Watches</h3>
-      <p>Ghc 150.00</p>
+    <div class="card" data-name="LITTLE BLACK HAT" data-price="40" data-img="s2.jpeg">
+      <img src="s2.jpeg" alt="Body Splash">
+      <h3>Little Black Hat</h3>
+      <p>Ghc 40.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Yara" data-price="15" data-img="s3.PNG">
-      <img src="s3.PNG" alt="Yara">
-      <h3>Yara</h3>
-      <p>Ghc 15.00</p>
-      <button onclick="addToCart(this)">Add to Cart</button>
-    </div>
-
-    <div class="card" data-name="Ladies Gold" data-price="35" data-img="s4.PNG">
-      <img src="s4.PNG" alt="Ladies Gold">
-      <h3>Ladies Gold</h3>
+    <div class="card" data-name="Red Classic Bracelet" data-price="35" data-img="bs1.jpeg">
+      <img src="bs1.jpeg" alt="Red Classic Bracelet">
+      <h3>Red Classic Bracelet</h3>
       <p>Ghc 35.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Luxury Royal" data-price="85" data-img="p2.PNG">
-      <img src="p2.PNG" alt="Luxury Royal">
-      <h3>Luxury Royal</h3>
-      <p>Ghc 85.00</p>
+    <div class="card" data-name="Ash Shoulder Bag" data-price="160" data-img="b16.jpeg">
+      <img src="b16.jpeg" alt="Ash Shoulder Bag">
+      <h3>Ash Shoulder Bag</h3>
+      <p>Ghc 160.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Rose Gold" data-price="38" data-img="s5.PNG">
-      <img src="s5.PNG" alt="Rose Gold">
-      <h3>Rose Gold</h3>
+    <div class="card" data-name="ZARA MAN" data-price="300" data-img="p15.jpeg">
+      <img src="p15.jpeg" alt="ZARA MAN">
+      <h3>Zara Man</h3>
+      <p>Ghc 300.00</p>
+      <button onclick="addToCart(this)">Add to Cart</button>
+    </div>
+
+    <div class="card" data-name="Gold Watch" data-price="38" data-img="w6.jpeg">
+      <img src="w6.jpeg" alt="Gold Watch">
+      <h3>Gold Watch</h3>
       <p>Ghc 38.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Metallic Silver" data-price="50" data-img="p3.PNG">
-      <img src="p3.PNG" alt="Metallic Silver">
-      <h3>Metallic Silver</h3>
-      <p>Ghc 50.00</p>
+    <div class="card" data-name="NG Nails" data-price="25" data-img="po3.jpeg">
+      <img src="po3.jpeg" alt="NG Nails">
+      <h3>NG Nails</h3>
+      <p>Ghc 25.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Sports Watch" data-price="30" data-img="p4.PNG">
-      <img src="p4.PNG" alt="Sports Watch">
-      <h3>Sports Watch</h3>
-      <p>Ghc 30.00</p>
+    <div class="card" data-name="ASAD" data-price="180" data-img="p28.jpeg">
+      <img src="p28.jpeg" alt="ASAD Zanzibar">
+      <h3>ASAD</h3>
+      <p>Ghc 180.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
 
-    <div class="card" data-name="Chain Watch" data-price="45" data-img="p5.PNG">
-      <img src="p5.PNG" alt="Chain Watch">
-      <h3>Chain Watch</h3>
-      <p>Ghc 45.00</p>
+    <div class="card" data-name="ARMAF" data-price="650" data-img="p5.jpeg">
+      <img src="p5.jpeg" alt="ARMAF Perfume">
+      <h3>ARMAF</h3>
+      <p>Ghc 650.00</p>
       <button onclick="addToCart(this)">Add to Cart</button>
     </div>
   </div>
@@ -297,6 +451,14 @@
   <!-- CART BUTTON -->
   <div class="cart-btn" onclick="openCart()">
     🛒 Cart (<span id="cartCount">0</span>)
+  </div>
+
+  <!-- IMAGE PREVIEW MODAL -->
+  <div class="image-modal-back" id="imageModal">
+    <div class="image-modal">
+      <button class="close-btn" id="closeImageBtn" aria-label="Close image preview">✕</button>
+      <img id="previewImage" src="" alt="Product image preview">
+    </div>
   </div>
 
   <!-- CART MODAL -->
@@ -314,7 +476,7 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Beauty & Slay Aesthetics. All rights reserved.</p>
+    <p>&copy; 2026 Scents & Slay Aesthetics. All rights reserved.</p>
   </footer>
 
 <script>
@@ -324,11 +486,12 @@
 
   function addToCart(btn){
     const card = btn.closest('.card');
+    const imgEl = card.querySelector('img');
     const item = {
-      name: card.dataset.name,
+      name: (card.dataset.name || '').trim(),
       price: parseFloat(card.dataset.price),
       qty: 1,
-      img: card.dataset.img
+      img: (card.dataset.img && card.dataset.img.trim()) || (imgEl && imgEl.src) || ''
     };
 
     let cart = getCart();
@@ -363,18 +526,26 @@
     let subtotal = 0;
 
     items.forEach((it,idx)=>{
-      subtotal += it.price * it.qty;
+      if (typeof it.price === 'number' && isFinite(it.price)) subtotal += it.price * it.qty;
 
       const div = document.createElement('div');
       div.className='cart-item';
       const img = document.createElement('img');
       img.src = it.img;
-      img.width = 50;
-      img.height = 50;
+      img.style.cursor = 'pointer';
+      img.style.width = '80px';
+      img.style.height = '80px';
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '6px';
       img.alt = it.name;
+      img.addEventListener('click', function() {
+        document.getElementById('previewImage').src = this.src;
+        document.getElementById('imageModal').style.display = 'flex';
+      });
       const info = document.createElement('div');
       info.style.flex = 1;
-      info.innerHTML = `<strong>${it.name}</strong><br>Ghc${it.price.toFixed(2)}`;
+      const priceText = (typeof it.price === 'number' && !isNaN(it.price)) ? 'Ghc'+it.price.toFixed(2) : 'Out of stock';
+      info.innerHTML = `<strong>${it.name}</strong><br>${priceText}`;
       const btnMinus = document.createElement('button');
       btnMinus.textContent = '-';
       btnMinus.setAttribute('aria-label', 'Decrease ' + it.name + ' quantity');
@@ -385,11 +556,20 @@
       btnPlus.textContent = '+';
       btnPlus.setAttribute('aria-label', 'Increase ' + it.name + ' quantity');
       btnPlus.onclick = () => changeQty(idx,1);
+      const btnRemove = document.createElement('button');
+      btnRemove.textContent = '✕';
+      btnRemove.style.marginLeft = '8px';
+      btnRemove.style.background = 'transparent';
+      btnRemove.style.border = '0';
+      btnRemove.style.color = '#c33';
+      btnRemove.style.cursor = 'pointer';
+      btnRemove.onclick = () => removeItem(idx);
       div.appendChild(img);
       div.appendChild(info);
       div.appendChild(btnMinus);
       div.appendChild(span);
       div.appendChild(btnPlus);
+      div.appendChild(btnRemove);
       list.appendChild(div);
     });
 
@@ -411,6 +591,14 @@
     document.getElementById('cartModal').style.display='none';
   }
 
+  function filterCards(){
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    document.querySelectorAll('#productGrid .card').forEach(card => {
+      const name = card.dataset.name.toLowerCase();
+      card.style.display = name.includes(q) ? '' : 'none';
+    });
+  }
+
   function goToOrder() {
     if(getCart().length === 0){
       alert("Your cart is empty!");
@@ -429,16 +617,54 @@
     if(e.key==='Escape') document.getElementById('cartModal').style.display='none';
   });
 
-  // SEARCH FUNCTIONALITY
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', function() {
-    const query = searchInput.value.toLowerCase();
-    const cards = document.querySelectorAll('#productGrid .card');
+  // Image preview modal
+  const imageModal = document.getElementById('imageModal');
+  const previewImage = document.getElementById('previewImage');
+  const closeImageBtn = document.getElementById('closeImageBtn');
 
-    cards.forEach(card => {
-      const name = card.dataset.name.toLowerCase();
-      card.style.display = name.includes(query) ? '' : 'none';
+  document.querySelectorAll('.card img').forEach(img => {
+    img.addEventListener('click', function() {
+      previewImage.src = this.src;
+      previewImage.alt = this.alt;
+      imageModal.style.display = 'flex';
     });
+  });
+
+  closeImageBtn.addEventListener('click', () => {
+    imageModal.style.display = 'none';
+  });
+
+  imageModal.addEventListener('click', (e) => {
+    if(e.target.id === 'imageModal') imageModal.style.display = 'none';
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && imageModal.style.display === 'flex') imageModal.style.display = 'none';
+  });
+
+  // TOGGLE DROPDOWN
+  function toggleDropdown() {
+    document.getElementById("categoryDropdown").classList.toggle("active");
+  }
+
+  // Mobile-friendly dropdown toggle
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+    const trigger = dropdown.querySelector('a');
+    if(trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const content = dropdown.querySelector('.dropdown-content');
+        const isOpen = content.style.display === 'block';
+        document.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
+        content.style.display = isOpen ? 'none' : 'block';
+      });
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
+    }
   });
 </script>
 

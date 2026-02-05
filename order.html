@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Place Your Order - Beauty & Slay Aesthetics</title>
+  <title>Place Your Order - Scents & Slay Aesthetics</title>
 
   <style>
     body {
@@ -154,7 +154,7 @@
       return;
     }
 
-    let message = `🔥 *New Order From Beauty & Slay Website* 🔥\n\n`;
+    let message = `🔥 *New Order From Scents & Slay Website* 🔥\n\n`;
     message += `👤 *Customer Details*\n`;
     message += `• Name: ${name}\n`;
     message += `• Phone: ${phone}\n`;
@@ -171,7 +171,7 @@
     message += `-------------------------\n`;
     message += `💵 *Total: Ghc ${total.toFixed(2)}*\n`;
 
-    const businessNumber = "233204200817";
+    const businessNumber = "233531360011";
     const url = `https://wa.me/${businessNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   }
@@ -198,6 +198,11 @@
       return;
     }
 
+    if (cart.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
     let message = `New Order:\n\nName: ${name}\nPhone: ${phone}\nLocation: ${location}\n\nItems:\n`;
 
     cart.forEach(i => {
@@ -207,8 +212,12 @@
     let total = cart.reduce((s,i)=>s + i.price * i.qty, 0);
     message += `\nTotal: Ghc ${total.toFixed(2)}\n`;
 
-    const email = "wiliamaffuldadzie@gmail.com";
-    window.location.href = `mailto:${email}?subject=New Order from Beauty & Slay&body=${encodeURIComponent(message)}`;
+    const email = "";
+    if (!email) {
+      alert("Email configuration is missing. Please contact the store via WhatsApp instead.");
+      return;
+    }
+    window.location.href = `mailto:${email}?subject=New Order from Scents & Slay&body=${encodeURIComponent(message)}`;
   }
 
   loadOrder();
