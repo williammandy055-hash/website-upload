@@ -72,11 +72,22 @@
       font-size: 20px;
       color: orange;
     }
+    /* ===== DROPDOWN ===== */
     .category-dropdown {
       margin-top: 10px;
       border-top: 1px solid #eee;
-      display: none;
+      
     }
+.category-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-dropdown.active {
+   max-height: 500px;
+}
+
     .category-dropdown.active {
       display: block;
     }

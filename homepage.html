@@ -292,8 +292,17 @@
     .category-dropdown {
       margin-top: 10px;
       border-top: 1px solid #eee;
-      display: none;
+      
     }
+.category-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-dropdown.active {
+   max-height: 500px;
+}
 
     .category-dropdown.active {
       display: block;
@@ -352,9 +361,10 @@
   <!-- CATEGORY BOX -->
   <div class="category-box">
     <div class="category-header" onclick="toggleDropdown()">
-      <strong>OUR CATEGORIES</strong>
-      <i class="fa-solid fa-bars menu-icon"></i>
-    </div>
+  <strong>OUR CATEGORIES</strong>
+  <i class="fa-solid fa-bars menu-icon"></i>
+</div>
+
 
     <div class="category-dropdown" id="categoryDropdown">
       <ul class="category-list">
@@ -643,9 +653,20 @@
   });
 
   // TOGGLE DROPDOWN
-  function toggleDropdown() {
-    document.getElementById("categoryDropdown").classList.toggle("active");
+ function toggleDropdown() {
+    const dropdown = document.getElementById("categoryDropdown");
+    dropdown.classList.toggle("active");
   }
+
+  // Close category dropdown when clicking outside (mobile + desktop)
+  document.addEventListener("click", function (e) {
+    const categoryBox = document.querySelector(".category-box");
+    const dropdown = document.getElementById("categoryDropdown");
+
+    if (!categoryBox.contains(e.target)) {
+      dropdown.classList.remove("active");
+    }
+  });
 
   // Mobile-friendly dropdown toggle
   document.querySelectorAll('.dropdown').forEach(dropdown => {
