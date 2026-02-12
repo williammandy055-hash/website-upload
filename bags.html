@@ -198,6 +198,85 @@
     justify-content: center;
   }
 }
+/* ===== AMAZON/JUMIA ULTRA-MINIMAL SLIDER ARROWS ===== */
+.img-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.img-slider .slides {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.img-slider img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* arrows */
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 32px;
+  border: none;
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.slide-btn.prev { left: -10px; }
+.slide-btn.next { right: -10px; }
+
+.img-slider:hover .slide-btn { opacity: 1; }
+.slide-btn:hover { background: var(--accent,#ff6600); transform: translateY(-50%) scale(1.1); }
+
+/* dots */
+.img-slider .dots {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.img-slider .dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  cursor: pointer;
+}
+
+.img-slider .dots span.active {
+  background: var(--accent);
+}
+
+/* mobile arrows */
+@media (max-width:600px) {
+  .slide-btn { width: 18px; height: 28px; font-size: 12px; }
+  .slide-btn.prev { left: -6px; }
+  .slide-btn.next { right: -6px; }
+}
+
 
   </style>
 </head>
@@ -250,24 +329,73 @@
 
 <div class="items" id="grid">
 
-  <div class="card" data-name="Quilted Bag" data-price="180.00"><img src="b1.jpeg" alt="Quilted Bag"><h3>Quilted Bag</h3><p>Ghc 180.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Handbag" data-price="130.00"><img src="b2.jpeg" alt="Handbag"><h3>Handbag</h3><p>Ghc 130.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Shoulder Bag" data-price="190.00"><img src="b4.jpeg" alt="Shoulder Bag"><h3>Shoulder Bag</h3><p>Ghc 190.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Luxury Bag" data-price="220.00"><img src="b5.jpeg" alt="Luxury Bag"><h3>Luxury Bag</h3><p>Ghc 220.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="LK tote bags" data-price="180.00">
+
+  <div class="img-slider">
+    <div class="slides">
+      <img src="b1.jpeg" alt="LK tote bags">
+      <img src="b8.jpeg" alt="LK tote bags">
+    </div>
+
+    <button class="slide-btn prev">❮</button>
+    <button class="slide-btn next">❯</button>
+
+    <div class="dots"></div>
+  </div>
+
+  <h3>LK tote bags</h3>
+  <p>Ghc 180.00</p>
+  <button onclick="addToCart(this)">Add to Cart</button>
+</div>
+  <div class="card" data-name="Minkol Koge" data-price="130.00">
+
+  <div class="img-slider">
+    <div class="slides">
+      <img src="b2.jpeg" alt="Minkol Koge">
+      <img src="b.jpeg" alt="Minkol Koge">
+      </div>
+        <button class="slide-btn prev">❮</button>
+    <button class="slide-btn next">❯</button>
+
+    <div class="dots"></div>
+  </div>
+  <h3>Minkol Koge</h3>
+  <p>Ghc 130.00</p>
+  <button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+  <div class="card" data-name="3 in 1 tote bag" data-price="190.00">
+
+  <div class="img-slider">
+    <div class="slides">
+      <img src="b4.jpeg" alt="LK tote bags - white">
+      <img src="b3.jpeg" alt="3 in 1 tote bag - pink">
+    </div>
+
+    <button class="slide-btn prev">❮</button>
+    <button class="slide-btn next">❯</button>
+
+    <div class="dots"></div>
+  </div>
+
+  <h3>3 in 1 tote bag</h3>
+  <p>Ghc 190.00</p>
+  <button onclick="addToCart(this)">Add to Cart</button>
+</div>
+  <div class="card" data-name="Michael kors tote bag" data-price="220.00"><img src="b5.jpeg" alt="Michael kors tote bag"><h3>Michael kors tote bag</h3><p>Ghc 220.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
   <div class="card" data-name="Mini Purse" data-price="75.00"><img src="b14.jpeg" alt="Mini Purse"><h3>Mini Purse</h3><p>Ghc 75.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
   <div class="card" data-name="Ash Shoulder Bag" data-price="160.00"><img src="b16.jpeg" alt="Ash Shoulder Bag"><h3>Ash Shoulder Bag</h3><p>Ghc 160.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Hobo Bag" data-price="180.00"><img src="b8.jpeg" alt="Hobo Bag"><h3>Hobo Bag</h3><p>Ghc 180.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Office Bag" data-price="130.00"><img src="b.jpeg" alt="Office Bag"><h3>Office Bag</h3><p>Ghc 130.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Casual Bag" data-price="80.00"><img src="b12.jpeg" alt="Casual Bag"><h3>Casual Bag</h3><p>Ghc 80.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Lacoste Tote Bags" data-price="180.00"><img src="b8.jpeg" alt="Lacoste tote bags"><h3>Lacoste tote bags</h3><p>Ghc 180.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Cross handbag" data-price="80.00"><img src="b12.jpeg" alt="Cross handbag"><h3>Cross handbag</h3><p>Ghc 80.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
   <div class="card" data-name="Designer Bag" data-price="220.00"><img src="b7.jpeg" alt="Designer Bag"><h3>Designer Bag</h3><p>Ghc 220.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Casual Bag" data-price="185.00"><img src="b6.jpeg" alt="Backpack"><h3>Casual Bag</h3><p>Ghc 185.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Beaded Bag" data-price="190.00"><img src="b3.jpeg" alt="Beaded Bag"><h3>Beaded Bag</h3><p>Ghc 190.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Bucket Bag" data-price="90.00"><img src="b13.jpeg" alt="Bucket Bag"><h3>Bucket Bag</h3><p>Ghc 90.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Belt Bag" data-price="100.00"><img src="b11.jpeg" alt="Belt Bag"><h3>Belt Bag</h3><p>Ghc 100.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
-  <div class="card" data-name="Bowling Bag" data-price="155.00"><img src="b15.jpeg" alt=""><h3>Bowling Bag</h3><p>Ghc 155.00</p><button onclick="">Add to Cart</button></div>
-  <div class="card" data-name="Box Bag" data-price="80.00"><img src="b10.jpeg" alt="Box Bag"><h3>Box Bag</h3><p>Ghc 80.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Min min tote bag" data-price="185.00"><img src="b6.jpeg" alt="Min min tote bag"><h3>Min min tote bag</h3><p>Ghc 185.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Cross handbag" data-price="90.00"><img src="b13.jpeg" alt="Cross handbag"><h3>Cross handbag</h3><p>Ghc 90.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Cute mini handbag" data-price="100.00"><img src="b11.jpeg" alt="Cute mini handbag"><h3>Cute mini handbag</h3><p>Ghc 100.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="2 in 1 ladies handbags pouch with tote bags" data-price="155.00"><img src="b15.jpeg" alt=""><h3>2 in 1 ladies handbags pouch with tote bags</h3><p>Ghc 155.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name="Handbag" data-price="80.00"><img src="b10.jpeg" alt="Handbag"><h3>Handbag</h3><p>Ghc 80.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
+  <div class="card" data-name=" Ladies Handbag" data-price="100.00"><img src="b17.jpeg" alt="Ladies Handbag"><h3> Ladies Handbag</h3><p>Ghc 100.00</p><button onclick="addToCart(this)">Add to Cart</button></div>
 
-</div>..
+</div>
 
 <div class="cart-btn" id="cartBtn" onclick="openCart()">🛒 <span id="cartCount">0</span></div>
 
@@ -457,6 +585,51 @@
   window.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && imageModal.style.display === 'flex') imageModal.style.display = 'none';
   });
+document.querySelectorAll(".img-slider").forEach(slider => {
+  const slides = slider.querySelector(".slides");
+  const images = slider.querySelectorAll("img");
+  const prevBtn = slider.querySelector(".prev");
+  const nextBtn = slider.querySelector(".next");
+  const dotsContainer = slider.querySelector(".dots");
+
+  let index = 0;
+  const total = images.length;
+
+  // Generate dots dynamically
+  images.forEach((_, i) => {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dotsContainer.appendChild(dot);
+  });
+  const dots = Array.from(dotsContainer.children);
+
+  function updateSlider() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  function nextSlide() { index = (index + 1) % total; updateSlider(); }
+  function prevSlide() { index = (index - 1 + total) % total; updateSlider(); }
+
+  nextBtn?.addEventListener("click", nextSlide);
+  prevBtn?.addEventListener("click", prevSlide);
+
+  dots.forEach((dot, i) => dot.addEventListener("click", () => { index = i; updateSlider(); }));
+
+  // Swipe support
+  let startX = 0;
+  slides.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+  slides.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 40) diff > 0 ? nextSlide() : prevSlide();
+  });
+});
+
+
+
+
 </script>
 </body>
 </html>

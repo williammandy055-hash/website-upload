@@ -147,6 +147,15 @@
     justify-content: center;
   }
 }
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Forces 2 columns on small phones */
+    gap: 10px; /* Reduces space to fit better */
+  }
+  .card img {
+    height: 100px; /* Makes images smaller to fit the 2-column layout */
+  }
+}
 
   </style>
 </head>

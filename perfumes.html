@@ -120,6 +120,15 @@
     justify-content: center;
   }
 }
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Forces 2 columns on small phones */
+    gap: 10px; /* Reduces space to fit better */
+  }
+  .card img {
+    height: 100px; /* Makes images smaller to fit the 2-column layout */
+  }
+}
 
   </style>
 </head>
@@ -170,44 +179,44 @@
   <main class="container">
     <h1 style="text-align:center;margin-bottom:14px">Perfumes</h1>
 
-    <section class="grid" id="grid">
+    <div class="grid" id="grid">
       <!-- 37 Product Cards -->
-      <div class="card" data-name="Men's Classic" data-price="40.00"><img src="p1.jpeg" alt="AMEERAT AL ARAB"><h4>AMEERAT AL ARABc</h4><div class="price">Ghc 350.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Ladies Gold" data-price="35.00"><img src="p10.jpeg" alt="SUAVE INTENSE"><h4>SUAVE INTENSE</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Luxury Royal" data-price="85.00"><img src="p2.jpeg" alt="ASAD BOURBON"><h4>ASAD BOURBON</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Rose Gold" data-price="38.00"><img src="p3.jpeg" alt="ASAD ZANZIBAR"><h4>ASAD ZANZIBAR</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Metallic Silver" data-price="50.00"><img src="p4.jpeg" alt="Berries Weekend"><h4>Berries weekend</h4><div class="price">Ghc 200.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Yara" data-price="15.00"><img src="p12.jpeg" alt="HAYAATI"><h4>HAYAATI</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Body Splash" data-price="12.50"><img src="p13.jpeg" alt="OUD DE ARABIA"><h4>OUD DE ARABIA</h4><div class="price">Ghc 270.50</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Diamond Perfume" data-price="70.00"><img src="p5.jpeg" alt="ARMAF"><h4>ARMAF</h4><div class="price">Ghc 650.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Ameerat Al Arab" data-price="40.00"><img src="p1.jpeg" alt="Ameerat Al Arab"><h4>Ameerat Al Arab</h4><div class="price">Ghc 350.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Suave Intense" data-price="35.00"><img src="p10.jpeg" alt="Suave Intense"><h4>Suave Intense</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="ASAD Bourbon" data-price="85.00"><img src="p2.jpeg" alt="ASAD Bourbon"><h4>ASAD Bourbon</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="ASAD Zanzibar" data-price="38.00"><img src="p3.jpeg" alt="ASAD Zanzibar"><h4>ASAD Zanzibar</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Berries Weekend" data-price="50.00"><img src="p4.jpeg" alt="Berries Weekend"><h4>Berries Weekend</h4><div class="price">Ghc 200.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Yara" data-price="15.00"><img src="p12.jpeg" alt="Hayaati"><h4>Hayaati</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Oud De Arabia" data-price="12.50"><img src="p13.jpeg" alt="Oud De Arabia"><h4>Oud De Arabia</h4><div class="price">Ghc 270.50</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Club De Nuit" data-price="70.00"><img src="p5.jpeg" alt="Club De Nuit"><h4>Club De Nuit</h4><div class="price">Ghc 650.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
         
-      <div class="card" data-name="Luxury Night" data-price="280.00"><img src="p11.jpeg" alt="Maison Eau De Parfum Vaporisateur"><h4>Maison Eau De Parfum Vaporisateur</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Ocean Breeze" data-price="42.00"><img src="p7.jpeg" alt="Sugar Candy"><h4>Sugar CAndy</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Vanilla Dreams" data-price="180.00"><img src="p8.jpeg" alt="ASAD"><h4>ASAD</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Cherry Blossom" data-price="600.00"><img src="p9.jpeg" alt="LIQUID BRUN"><h4>LIQUID BRUN</h4><div class="price">Ghc 600.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Musk Elegance" data-price="260.00"><img src="p14.jpeg" alt="EXTREMELY UNIQUE"><h4>EXTREMELY UNIQUE</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Jasmine Bliss" data-price="300.00"><img src="p15.jpeg" alt="ZARA MAN"><h4>ZARA MAN</h4><div class="price">Ghc 300.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Lavender Mist" data-price="280.00"><img src="p16.jpeg" alt="Maison Francis Kurkdijan Paris"><h4>Maison Francis Kurkdijan Paris</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Citrus Splash" data-price="250.00"><img src="p17.jpeg" alt="MATELOT"><h4>MATELOT</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Rose Perfume" data-price="280.00"><img src="p18.jpeg" alt="Maison Francis Kurkdijan Paris"><h4>Maison Francis Kurkdijan Paris</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Honey Nectar" data-price="250.00"><img src="p19.jpeg" alt="Good Girl"><h4>Good Girl</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Spice Blend" data-price="300.00"><img src="p20.jpeg" alt="Eclaire"><h4>Eclaire</h4><div class="price">Ghc 300.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Forest Pine" data-price="360.00"><img src="p21.jpeg" alt="SAHEB"><h4>SAHEB</h4><div class="price">Ghc 360.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Amber Gold" data-price="260.00"><img src="p22.jpeg" alt="AVENTOS"><h4>AVENTOS</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Pearl White" data-price="200.00"><img src="p23.jpeg" alt="MY WAY"><h4>MY WAY</h4><div class="price">Ghc 200.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Midnight Black" data-price="180.00"><img src="p24.jpeg" alt="BROWN ORCHD"><h4>BROWN ORCHID</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Sunshine Gold" data-price="320.00"><img src="p25.jpeg" alt="BAD LAD"><h4>BAD LAD</h4><div class="price">Ghc 320.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Mystic Blue" data-price="600.00"><img src="p26.jpeg" alt="VERSACE EROS"><h4>VERSACE EROS</h4><div class="price">Ghc 600.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Emerald Dream" data-price="180.00"><img src="p27.jpeg" alt="YARA"><h4>YARA</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Ruby Passion" data-price="180.00"><img src="p28.jpeg" alt="ASAD"><h4>ASAD</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Sapphire Blue" data-price="260.00"><img src="p29.jpeg" alt="NOW WOMEN"><h4>NOW WOMEN</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Crystal Clear" data-price="160.00"><img src="p30.jpeg" alt="NOW"><h4>NOW</h4><div class="price">Ghc 160.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Silk Touch" data-price="360.00"><img src="p31.jpeg" alt="KHAMRAH"><h4>kHAMRAH</h4><div class="price">Ghc 360.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Velvet Smooth" data-price="550.00"><img src="p32.jpeg" alt="Vintage Radio"><h4>Vintage Radio</h4><div class="price">Ghc 550.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Satin Luxe" data-price="630.00"><img src="p33.jpeg" alt="9 PM"><h4>9 PM</h4><div class="price">Ghc 630.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Golden Hour" data-price="670.00"><img src="p34.jpeg" alt="Vintage Radio"><h4>Vintage Radio</h4><div class="price">Ghc 670.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-      <div class="card" data-name="Silver Shimmer" data-price="280.00"><img src="p35.jpeg" alt="HAYAATI"><h4>HAYAATI</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
-    </section>
+      <div class="card" data-name="Maison Eau De Parfum Vaporisateur" data-price="280.00"><img src="p11.jpeg" alt="Maison Eau De Parfum Vaporisateur"><h4>Maison Eau De Parfum Vaporisateur</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Sugar Candy" data-price="42.00"><img src="p7.jpeg" alt="Sugar Candy"><h4>Sugar Candy</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="ASAD" data-price="180.00"><img src="p8.jpeg" alt="ASAD"><h4>ASAD</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Liquid Brun" data-price="600.00"><img src="p9.jpeg" alt="Liquid Brun"><h4>Liquid Brun</h4><div class="price">Ghc 600.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Extremely Unique" data-price="260.00"><img src="p14.jpeg" alt="Extremely Unique"><h4>Extremely Unique</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Zara Man" data-price="300.00"><img src="p15.jpeg" alt="Zara Man"><h4>Zara Man</h4><div class="price">Ghc 300.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Maison Francis Kurkdijan Paris" data-price="280.00"><img src="p16.jpeg" alt="Maison Francis Kurkdijan Paris"><h4>Maison Francis Kurkdijan Paris</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="MATELOT" data-price="250.00"><img src="p17.jpeg" alt="MATELOT"><h4>MATELOT</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Maison Francis Kurkdijan Paris" data-price="280.00"><img src="p18.jpeg" alt="Maison Francis Kurkdijan Paris"><h4>Maison Francis Kurkdijan Paris</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Good Girl" data-price="250.00"><img src="p19.jpeg" alt="Good Girl"><h4>Good Girl</h4><div class="price">Ghc 250.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Eclaire" data-price="300.00"><img src="p20.jpeg" alt="Eclaire"><h4>Eclaire</h4><div class="price">Ghc 300.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="SAHEB" data-price="360.00"><img src="p21.jpeg" alt="SAHEB"><h4>SAHEB</h4><div class="price">Ghc 360.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="AVENTOS" data-price="260.00"><img src="p22.jpeg" alt="AVENTOS"><h4>AVENTOS</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="My Way" data-price="200.00"><img src="p23.jpeg" alt="My Way"><h4>My Way</h4><div class="price">Ghc 200.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Brown Orchid" data-price="180.00"><img src="p24.jpeg" alt="Brown Orchid"><h4>Brown Orchid</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Bad Lad" data-price="320.00"><img src="p25.jpeg" alt="Bad Lad"><h4>Bad Lad</h4><div class="price">Ghc 320.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Versace Eros" data-price="600.00"><img src="p26.jpeg" alt="Versace Eros"><h4>Versace Eros</h4><div class="price">Ghc 600.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="YARA" data-price="180.00"><img src="p27.jpeg" alt="YARA"><h4>YARA</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="ASAD Zanzibar" data-price="180.00"><img src="p28.jpeg" alt="ASAD"><h4>ASAD Zanzibar</h4><div class="price">Ghc 180.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Now Women" data-price="260.00"><img src="p29.jpeg" alt="Now Women"><h4>Now Women</h4><div class="price">Ghc 260.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="NOW" data-price="160.00"><img src="p30.jpeg" alt="NOW"><h4>NOW</h4><div class="price">Ghc 160.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Khamrah" data-price="360.00"><img src="p31.jpeg" alt="Khamrah"><h4>khamrah</h4><div class="price">Ghc 360.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Vintage Radio" data-price="550.00"><img src="p32.jpeg" alt="Vintage Radio"><h4>Vintage Radio</h4><div class="price">Ghc 550.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="9 PM" data-price="630.00"><img src="p33.jpeg" alt="9 PM"><h4>9 PM</h4><div class="price">Ghc 630.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Vintage Radio Set" data-price="670.00"><img src="p34.jpeg" alt="Vintage Radio"><h4>Vintage Radio Set</h4><div class="price">Ghc 670.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+      <div class="card" data-name="Hayaati" data-price="280.00"><img src="p35.jpeg" alt="Hayaati"><h4>Hayaati</h4><div class="price">Ghc 280.00</div><button class="add" onclick="addToCart(this)">Add to Cart</button></div>
+    </div>
   </main>
 
   <div class="cart-btn" id="cartBtn" onclick="openCart()">🛒 <span id="cartCount">0</span></div>

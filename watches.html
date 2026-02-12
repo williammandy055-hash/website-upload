@@ -150,6 +150,15 @@
     justify-content: center;
   }
 }
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Forces 2 columns on small phones */
+    gap: 10px; /* Reduces space to fit better */
+  }
+  .card img {
+    height: 100px; /* Makes images smaller to fit the 2-column layout */
+  }
+}
 
   </style>
 </head>
@@ -201,9 +210,9 @@
     <h1 style="text-align:center;margin-bottom:14px">Watches Collection</h1>
 
     <section class="grid" id="grid">
-      <div class="card" data-name="Female Leather Strap Watch" data-price="260.00">
-        <img src="w1.jpeg" alt="Female Leather Strap Watch">
-        <h4>Female Leather Strap Watch</h4><div class="price">Ghc 260.00</div>
+      <div class="card" data-name="Watch Set" data-price="260.00">
+        <img src="w1.jpeg" alt="Watch Seth">
+        <h4>Watch Set</h4><div class="price">Ghc 260.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
       <div class="card" data-name="Ladies Gold" data-price="">
@@ -216,34 +225,35 @@
         <h4>Smart Watch</h4><div class="price">Ghc 85.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
-      <div class="card" data-name="Black Watch" data-price="310.00">
-        <img src="w3.jpeg" alt="Diamond Watch">
-        <h4>Black Watch</h4><div class="price">Ghc 310.00</div>
+      <div class="card" data-name="Rolex Watch" data-price="310.00">
+        <img src="w3.jpeg" alt="Rolex Watch">
+        <h4>Rolex Watch</h4><div class="price">Ghc 310.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
-      <div class="card" data-name="Sports Watch" data-price="">
-        <img src="w3.PNG" alt="Sports Watch">
-        <h4>Sports Watch</h4><div class="price">Out Of Stock</div>
+      <div class="card" data-name="Watch Set" data-price="">
+        <img src="w3.PNG" alt="Watch Set">
+        <h4>Watch Set</h4><div class="price">Out Of Stock</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
-      <div class="card" data-name="Black Leather Strap Watch" data-price="250.00">
-        <img src="w4.jpeg" alt="Black Leather Strap Watch">
-        <h4>Black Leather Strap Watch</h4><div class="price">Ghc 250.00</div>
+      <div class="card" data-name="Watch Set" data-price="250.00">
+        <img src="w4.jpeg" alt="Watch Set">
+        <h4>Watch Set</h4><div class="price">Ghc 250.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
-      <div class="card" data-name="Silver Watch" data-price="190.00">
-        <img src="w5.jpeg" alt="Silver watch">
-        <h4>Silver Watch</h4><div class="price">Ghc 190.00</div>
+      <div class="card" data-name="Rolex Watch" data-price="190.00">
+        <img src="w5.jpeg" alt="Rolex Watch">
+        <h4>Rolex Watch</h4><div class="price">Ghc 190.00</div>
+        <h4></h4><div class="price">Ghc 190.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
-      <div class="card" data-name="Gold Watch" data-price="190.00">
-        <img src="w6.jpeg" alt="Gold watch">
-        <h4>Gold Watch</h4><div class="price">Ghc 190.00</div>
+      <div class="card" data-name="Rolex Watch" data-price="190.00">
+        <img src="w6.jpeg" alt="Rolex Watch">
+        <h4>Rolex Watch</h4><div class="price">Ghc 190.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
-      <div class="card" data-name="Metallic Silver" data-price="190.00">
-        <img src="w7.jpeg" alt="Metallic Silver watch">
-        <h4>Metallic Silver Watch</h4><div class="price">Ghc 190.00</div>
+      <div class="card" data-name="Rolex Watch" data-price="190.00">
+        <img src="w7.jpeg" alt="Rolex watch">
+        <h4>Rolex Watch</h4><div class="price">Ghc 190.00</div>
         <button class="add" onclick="addToCart(this)">Add to Cart</button>
       </div>
       <div class="card" data-name="For Men" data-price="130.00">
